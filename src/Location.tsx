@@ -4,7 +4,7 @@ import { Snackbar } from './Snackbar'
 import { CoordinateInput } from './CoordinateInput'
 
 type LocationProps = {
-  dispatch: any
+  dispatch: (action: any) => void
   canAddNext: boolean
 }
 
@@ -29,6 +29,7 @@ export function Location ({ dispatch, canAddNext }: LocationProps) {
   const handleSubmit = useCallback(
     e => {
       e.preventDefault()
+      setOpen(true)
       dispatch({ type: 'addLocation', latitude, longitude })
       setLatitude(initialCoordinateValue)
       setLongitude(initialCoordinateValue)
@@ -57,12 +58,7 @@ export function Location ({ dispatch, canAddNext }: LocationProps) {
         </Grid>
         <Grid item xs={12} sm={4}>
           <Snackbar open={open} setOpen={setOpen} message='Location Added!' />
-          <Button
-            variant='contained'
-            color='primary'
-            type='submit'
-            onClick={() => setOpen(true)}
-          >
+          <Button variant='contained' color='primary' type='submit'>
             {canAddNext ? 'Next' : 'Find Times'}
           </Button>
         </Grid>

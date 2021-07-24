@@ -1,5 +1,4 @@
 import React, { useEffect, useReducer, useState } from 'react'
-import './App.css'
 import { CoordinateIntake } from './CoordinateIntake'
 import { CoordinatesAndTimes } from './CoordinatesAndTimes'
 import { Snackbar } from './Snackbar'
@@ -14,7 +13,7 @@ function App () {
   const { locations, times } = state
 
   useEffect(() => {
-    // this would be dangerous if it mutated locations
+    // this would be dangerous if it caused locations to get recreated
     // since it could create an infinite render loop
     if (locations.length === 5) {
       setShowResults(true)
